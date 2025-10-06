@@ -57,9 +57,9 @@ console.log(addNumbers(arrayNumbers));
 */
 
 const reduceNumbers = function (array) {
-  const sum = 0;
+  const sum = 0; //il valore iniziale da cui partire
   const finalSum = array.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
+    (accumulator, currentValue) => accumulator + currentValue, //accumulator è il risultato parziale, currentValue è l'elemento corrente
     sum
   );
   return finalSum;
@@ -75,6 +75,16 @@ const increase = function (array) {
 };
 
 console.log(increase(arrayNumbers));
+
+// versione in cui si aggiunge il numero n prestabilito
+const addNumber = (array, incr) => {
+  const arrayIncr = array.map((num) => {
+    return num + incr;
+  });
+  return arrayIncr;
+};
+
+addNumber(arrayNumbers, 7);
 
 /* ESERCIZIO 7 (map)
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
@@ -270,7 +280,7 @@ console.log(filmTitles(movies));
 */
 
 const films2000 = function (array) {
-  const movies2000 = array.filter((film) => film.Year >= 2000);
+  const movies2000 = array.filter((film) => parseInt(film.Year) >= 2001);
   return movies2000;
 };
 
@@ -282,7 +292,7 @@ console.log(films2000(movies));
 
 const reduceMovies = function (array) {
   const finalSum = array.reduce(
-    (accumulator, film) => accumulator + Number(film.Year),
+    (accumulator, film) => accumulator + parseInt(film.Year),
     0
   );
   return finalSum;
@@ -293,6 +303,31 @@ console.log(reduceMovies(movies));
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
 */
 
+const findAMovie = (id) => {
+  const risultato = movies.find((film) => {
+    if (film.imdbID === id) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return risultato;
+};
+console.log(findAMovie("tt0848228"));
+// const risultato = movies.find((film) => film.imdbID === id) // versione breve
+
 /* ESERCIZIO 15 (findIndex)
   Scrivi una funzione per ottenere dall'array fornito l'indice del primo film uscito nell'anno fornito come parametro.
 */
+
+const findAMovie2 = (year) => {
+  const risultato = movies.findIndex((film) => {
+    if (film.Year === year) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return risultato;
+};
+console.log(findAMovie2("2018"));
